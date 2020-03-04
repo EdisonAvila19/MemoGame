@@ -9,23 +9,24 @@
     const Button3 = document.getElementById('Button--3')
     const Level = document.getElementById('Level')
     
-    Button0.addEventListener('click',()=>{
 
-    })
-    Button1.addEventListener('click',()=>{
-        
-    })
-    Button2.addEventListener('click',()=>{
-        
-    })
-    Button3.addEventListener('click',()=>{
-        
-    })
-
-
+var buttonId
 var MaxLevel = 10
-var cont = false;
+var Order
+var cont = false
+var Lv = 0
+var live = true
 
+
+
+function endGame(Lv){
+    console.log(`pierdes`)
+    StartButton.style.display = 'block'
+    StartButton.innerHTML = 'End Game'
+    Level.innerHTML = `Lv Max: ${Lv}`
+
+    setTimeout(() => {location.reload();}, 3000);
+}
 
 function GenLevel(MaxLv){
 
@@ -39,7 +40,7 @@ function GenLevel(MaxLv){
     return sequence
 }
 
-function oscurecer(id,t,Lv){
+function oscurecer(id){
     switch(id){
         case 0:
             Button0.classList.remove('Light')
@@ -54,62 +55,96 @@ function oscurecer(id,t,Lv){
             Button3.classList.remove('Light')
             break; 
     }
-    if (t+1==Lv)
-    {
-        cont = true;
-        console.log(cont)
-    }
 }
 
-function iluminar(id,t,Lv){
-    console.log(`id es = ${id} y Time= ${t}`)
-    switch(id){
-        case 0:
-            Button0.classList.add('Light')
-            //setTimeout(() => oscurecer(id), 500); 
-            break;
-        case 1:
-            Button1.classList.add('Light')
-            //setTimeout(() => oscurecer(id), 500); 
-            break;
-        case 2:
-            Button2.classList.add('Light')
-            //setTimeout(() => oscurecer(id), 500); 
-            break;
-        case 3:
-            Button3.classList.add('Light')
-            //setTimeout(() => oscurecer(id), 500); 
-            break;
-    }
-    
-    setTimeout(() => oscurecer(id,t,Lv), 500);
+function iluminar(id,Ti,To){
+    return new Promise(resolve =>{
+        setTimeout(() => {
+            console.log(`id es = ${id}`)
+            switch(id){
+                case 0:
+                    Button0.classList.add('Light')
+                    break;
+                case 1:
+                    Button1.classList.add('Light')
+                    break;
+                case 2:
+                    Button2.classList.add('Light')
+                    break;
+                case 3:
+                    Button3.classList.add('Light')
+                    break;
+            }
+            setTimeout(() => oscurecer(id), To);
+            resolve(true)
+        }, Ti);
+    })
 }
 
-function ShowSeq(Lv, Seq){
+async function ShowSeq(Lv, Seq){
     Level.innerHTML = `Lv: ${Lv}`
     for(let i = 0; i < Lv ; i++){
         console.log(i)
         let cons = Seq[i]
-        setTimeout(() => iluminar(cons,i,Lv), 1000*(i+1));    
+        await iluminar(cons,600,300)
     }
 }
 
-function AskSeq(Lv, Seq, live){
-    alert('AskSeq')
+function ButtonAction(){
+    return new Promise(resolve =>{
+        var Id
+        Button0.addEventListener('click', async () => {
+            await iluminar(0,100,300)
+            resolve(0)})
+        Button1.addEventListener('click', async () => {
+            await iluminar(1,100,300)
+            resolve(1)})
+        Button2.addEventListener('click', async () => {
+            await iluminar(2,100,300)
+            resolve(2)})
+        Button3.addEventListener('click', async () => {
+            await iluminar(3,100,300)
+            resolve(3)})
+    })
+}
+
+async function AskSeq(Lv, Seq){
+    for(let i = 0; i < Lv ; i++){
+        //console.log(i)
+        let cons = Seq[i]
+        const button = await ButtonAction()
+        if(cons === button)
+        {
+            console.log('bien')
+        }
+        else{
+            endGame(Lv)
+            live = false
+        }
+    }
 }
 
 async function start(){
-    
+    MaxLevel = prompt(`¿Cuantos niveles deseas realizar?`)
     StartButton.style.display = 'none'
-    
-    var Level = 1
-    var Order = GenLevel(MaxLevel, Level)
+    Lev = 1
+    do{
+    Order = GenLevel(MaxLevel, Lev)
         console.log(Order)
-    ShowSeq(Level,Order)
+    await ShowSeq(Lev,Order)
+        console.log('Iniciar Pregunta')
+    
+    await AskSeq(Lev, Order)
+        console.log('Finalizar Pregunta')
+    Lev++
+    }while(Lev<=MaxLevel && live)
+    
 }
 
-
 StartButton.addEventListener('click',start)
+
+
+
 
 
 

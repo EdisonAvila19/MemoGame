@@ -49,6 +49,7 @@ body {
   height: 200px;
   width: 200px;
   border: none;
+  outline: none;
 }
 
 .AreaGame--0 {
