@@ -60,7 +60,7 @@ function oscurecer(id){
 function iluminar(id,Ti,To){
     return new Promise(resolve =>{
         setTimeout(() => {
-            console.log(`id es = ${id}`)
+           // console.log(`id es = ${id}`)
             switch(id){
                 case 0:
                     Button0.classList.add('Light')
@@ -84,7 +84,7 @@ function iluminar(id,Ti,To){
 async function ShowSeq(Lv, Seq){
     Level.innerHTML = `Lv: ${Lv}`
     for(let i = 0; i < Lv ; i++){
-        console.log(i)
+        //console.log(i)
         let cons = Seq[i]
         await iluminar(cons,600,300)
     }
@@ -130,12 +130,11 @@ async function start(){
     Lev = 1
     do{
     Order = GenLevel(MaxLevel, Lev)
-        console.log(Order)
+        //console.log(Order)
     await ShowSeq(Lev,Order)
-        console.log('Iniciar Pregunta')
-    
+        //console.log('Iniciar Pregunta')
     await AskSeq(Lev, Order)
-        console.log('Finalizar Pregunta')
+        //console.log('Finalizar Pregunta')
     Lev++
     }while(Lev<=MaxLevel && live)
     
