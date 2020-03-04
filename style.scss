@@ -10,17 +10,30 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(#63C132,#CFFCFF);
 }
 
 .Title{
+    
     position: absolute;
     font-size: 50px;
+    color: white;
+    padding: 10px;
+    background-color: transparent
+    
+}
+.Level{
+    display: none;
+    position: relative;
+    top: -200px;
+    left: -300px;
+    font-size: 30px;
     color: black;
     background-color: transparent
 }
 
 .AreaGame{
-    
+    position: absolute;
     height: 400px;
     width: 400px;
     border-radius: 200px;
@@ -36,21 +49,38 @@ body{
             height: 200px;
             width: 200px;
             border: none;
+            //outline: none;
         }
-        .AreaGame--Green{
-            background-color: green;
+        .AreaGame--0{
+            background-color: rgba(4, 42, 43,1);
             margin: 0 3px 3px 0 ;
         }
-        .AreaGame--Blue{
-            background-color: Blue;
+            // .AreaGame--0:hover{
+            //     background-color: rgba(4, 42, 43,0.6); 
+            // }
+        .AreaGame--1{
+            background-color: rgb(36, 96, 107);
             margin: 0 0 3px 3px ;
         }
-        .AreaGame--Yellow{
-            background-color: Yellow;
+            // .AreaGame--1:hover{
+            //     background-color: rgba(36, 96, 107,0.6);
+            // }
+        .AreaGame--2{
+            background-color: rgb(90, 74, 34);
             margin: 6px 3px 0 0;
         }
-        .AreaGame--Magenta{
-            background-color: Magenta;
+            // .AreaGame--2:hover{
+            //     background-color: rgba(90, 74, 34,0.6);
+            // }
+        .AreaGame--3{
+            background-color: rgba(89, 52, 79,1);
             margin: 6px 0 0 3px;
         }
+            // .AreaGame--3:hover{
+            //     background-color: rgba(89, 52, 79,0.6);
+            // }
+
+                .Light{
+                    opacity: 0.5;
+                }
 

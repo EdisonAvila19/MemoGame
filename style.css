@@ -10,16 +10,29 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(#63C132, #CFFCFF);
 }
 
 .Title {
   position: absolute;
   font-size: 50px;
+  color: white;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.Level {
+  display: none;
+  position: relative;
+  top: -200px;
+  left: -300px;
+  font-size: 30px;
   color: black;
   background-color: transparent;
 }
 
 .AreaGame {
+  position: absolute;
   height: 400px;
   width: 400px;
   border-radius: 200px;
@@ -38,24 +51,28 @@ body {
   border: none;
 }
 
-.AreaGame--Green {
-  background-color: green;
+.AreaGame--0 {
+  background-color: #042a2b;
   margin: 0 3px 3px 0;
 }
 
-.AreaGame--Blue {
-  background-color: Blue;
+.AreaGame--1 {
+  background-color: #24606b;
   margin: 0 0 3px 3px;
 }
 
-.AreaGame--Yellow {
-  background-color: Yellow;
+.AreaGame--2 {
+  background-color: #5a4a22;
   margin: 6px 3px 0 0;
 }
 
-.AreaGame--Magenta {
-  background-color: Magenta;
+.AreaGame--3 {
+  background-color: #59344f;
   margin: 6px 0 0 3px;
+}
+
+.Light {
+  opacity: 0.5;
 }
 
 /*# sourceMappingURL=style.css.map */
